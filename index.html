@@ -57,17 +57,18 @@ select{font:600 14px Manrope,sans-serif;color:var(--ink);background:var(--panel)
 .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:1px}
 .count{color:var(--muted);font-size:13px;padding:2px 0 8px}
 .sub{font-size:13px;font-weight:800;letter-spacing:.5px;color:var(--acc);padding:18px 2px 8px;text-transform:uppercase}
-.list{display:flex;flex-direction:column;gap:8px}
-.item{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:4px 18px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
-.nm{font-weight:600;font-size:15px;line-height:1.35;align-self:center}
-.item .price{align-self:end}
-.nm .cat{display:block;font-size:12px;color:var(--muted);font-weight:500;margin-top:2px}
+.list{display:flex;flex-direction:column;gap:5px}
+.item{display:grid;grid-template-columns:minmax(0,1fr) 150px 190px;gap:4px 14px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:7px 10px 7px 12px}
+.nm{font-weight:600;font-size:13.5px;line-height:1.3;align-self:center}
+.item .price{align-self:center}
+.nm .cat{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-top:2px}
 .pz{font-size:12px;color:var(--muted)}
-.price{text-align:right;white-space:nowrap;display:flex;flex-direction:column;align-items:flex-end}
-.price .l{display:block;font-size:11px;color:var(--muted);font-weight:600}
-.price .v{font-size:17px;font-weight:700;color:var(--ink)}
-.price s{display:block;font-size:12px;color:#8a909a;font-weight:500}
-.price.box .v{color:#1c2a44;font-size:19px;font-weight:800}
+.price{white-space:nowrap;display:flex;align-items:center;justify-content:flex-end;gap:8px}
+.pv{display:flex;flex-direction:column;align-items:flex-end;line-height:1.15}
+.price .l{display:block;font-size:10.5px;color:var(--muted);font-weight:600}
+.price .v{font-size:15px;font-weight:700;color:var(--ink)}
+.price s{font-size:11px;color:#8a909a;font-weight:500;margin-right:5px}
+.price.box .v{color:#1c2a44;font-size:15.5px;font-weight:800}
 .badge{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:2px;white-space:nowrap}
 .b-b{background:var(--down);color:#1b1800}.b-s{background:var(--up);color:#0d1e08}.b-n{background:var(--new);color:#08182b}.b-n2{background:var(--acc);color:#fff}
 .wa{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--wa);margin-left:8px;vertical-align:-8px}
@@ -81,14 +82,16 @@ footer a{color:#1c2a44;font-weight:700}
 .deliv{background:#e9edf4;color:#1c2a44;font-size:14px;border-bottom:1px solid var(--line)}
 .deliv .wrap{display:flex;align-items:center;justify-content:center;gap:8px;padding-top:9px;padding-bottom:9px;text-align:left}
 .deliv svg{flex:none}
-.add{display:flex;align-items:center;justify-content:center;gap:6px;margin:6px 0 0 auto;border-radius:10px;height:38px;min-width:104px;padding:0 12px;font:800 13.5px Manrope,sans-serif;cursor:pointer;white-space:nowrap}
+.add{position:relative;flex:none;display:flex;align-items:center;justify-content:center;gap:2px;border-radius:9px;height:36px;width:44px;padding:0;font:800 15px Manrope,sans-serif;cursor:pointer;white-space:nowrap}
+.add .n{position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:#7a1f2b;color:#fff;font-size:11px;line-height:18px;text-align:center}
+.add.c .n{background:#fff;color:#7a1f2b;border:1px solid #7a1f2b;line-height:16px}
 .add.b{border:1.5px solid #1c2a44;background:#fff;color:#1c2a44}
 .add.b:hover{background:#eef1f6}
 .add.b.on{background:#e3e8f1}
 .add.c{border:1.5px solid #1c2a44;background:#1c2a44;color:#fff}
 .add.c:hover{background:#26375a}
 .add.c.on{background:#7a1f2b;border-color:#7a1f2b}
-.add svg{width:15px;height:15px;flex:none}
+.add svg{width:16px;height:16px;flex:none}
 .cartbar{position:fixed;left:12px;right:12px;bottom:12px;z-index:10;max-width:620px;margin:0 auto;display:flex;align-items:center;gap:10px;background:#1c2a44;color:#fff;border-radius:16px;padding:10px 10px 10px 16px;box-shadow:0 8px 24px rgba(20,24,31,.3)}
 .cartbar .ct{flex:1;font-size:14px;line-height:1.3}
 .cartbar .ct b{font-size:17px;display:block}
@@ -114,12 +117,12 @@ footer a{color:#1c2a44;font-weight:700}
 body.hascart .fab{display:none}
 body.hascart footer{padding-bottom:120px}
 @media(max-width:600px){
-  .item{grid-template-columns:minmax(0,1fr) auto;gap:6px 12px}
+  .item{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:5px 10px;padding:7px 9px 8px 11px}
   .nm{grid-column:1/-1}
-  .price{text-align:left;align-items:flex-start}
-  .price .add{margin-left:0}
-  .price.box .add{margin-left:auto}
-  .price.box{text-align:right}
+  .price{justify-content:flex-start}
+  .price .pv{align-items:flex-start}
+  .price.box{justify-content:flex-end}
+  .price.box .pv{align-items:flex-end}
   .tile{min-height:0;padding-top:66px}
   .tile b{font-size:21px;max-width:100%}
   .tile svg{width:46px;height:56px}
@@ -218,6 +221,17 @@ const items = DATA.items.map(([cat,name,pz,unit,box,ch,unitBox,boxFull]) => ({ca
 const groupOf = {};
 GROUPS.forEach(g => g[2] && g[2].forEach(c => groupOf[c] = g[0]));
 const inGroup = (g, i) => g[0]==='ofertas' ? i.ch==='b' : (g[2]||[]).includes(i.cat);
+// tipos por nombre (solo para la categoría principal del grupo)
+const TYPES = {
+  tequila: [['Cristalino',/CRISTALINO|HERRADURA CRISTAL|DON JULIO 70|DOBEL DIAMANTE/],['Extra añejo',/EXTRA A[ÑN]EJO|CENTENARIO LEYENDA|1800 MILENIO/],['Añejo',/A[ÑN]EJO|DON JULIO 1942/],['Reposado',/REPOSADO|\bREP\b|CENTENARIO AZUL/],['Blanco',/BLANCO|PLATA|SILVER|PLATINO|PLATINUM|\bBCO\b|\bBL\b/]],
+  whisky: [['Bourbon y americano',/BOURBON|JACK DANIEL|JIM BEAM|MAKER|WILD TURKEY|GENTLEMAN|BULLEIT|WOODFORD|CROWN ROYAL|RYE/],['Irlandés',/JAMESON|BUSHMILLS|TULLAMORE|IRISH/],['Single malt',/SINGLE|GLENFIDDICH|GLENLIVET|MACALLAN|DALWHINNIE|CARDHU|SINGLETON|TALISKER|LAGAVULIN|OBAN|BALVENIE/],['Japonés',/HIBIKI|TOKI|SUNTORY|NIKKA|YAMAZAKI/]]
+};
+const DEFTYPE = {tequila:'Otros', whisky:'Escocés (blend)'};
+function typeOf(gid,i){
+  const g = GROUPS.find(x=>x[0]===gid); if(!g || !g[2] || i.cat!==g[2][0]) return null;
+  for(const [lbl,re] of TYPES[gid]) if(re.test(i.name)) return lbl;
+  return DEFTYPE[gid] || null;
+}
 const $ = id => document.getElementById(id);
 const qEl=$('q'), sbox=$('sbox'), home=$('home'), view=$('view'), out=$('out'), sortEl=$('sort'), subsEl=$('subs');
 let cur=null, sub='', filt='';
@@ -239,12 +253,11 @@ function badge(ch){
   return ch==='b'?'<span class="badge b-b">Bajó</span>':ch==='s'?'<span class="badge b-s">Subió</span>':ch==='n'?'<span class="badge b-n">En oferta</span>':ch==='n2'?'<span class="badge b-n2">Nuevo</span>':'';
 }
 function row(i, showCat){
-  const unit = i.unit!=null ? '<div class="price"><span class="l">Botella</span><span class="v">'+money(i.unit)+'</span>'+addBtn(i,'b')+'</div>' : '<div class="price"></div>';
+  const unit = i.unit!=null ? '<div class="price"><div class="pv"><span class="l">Botella</span><span class="v">'+money(i.unit)+'</span></div>'+addBtn(i,'b')+'</div>' : '<div class="price"></div>';
   let box = '<div class="price box"></div>';
   if(i.box!=null){
-    box = '<div class="price box"><span class="l">'+(i.pz===1?'Precio':'Caja'+(i.pz?' ('+i.pz+' pzas)':''))+'</span>'+
-      (i.boxFull!=null && i.boxFull>i.box ? '<s>'+money(i.boxFull)+'</s>' : '')+
-      '<span class="v">'+money(i.box)+'</span>'+addBtn(i,'c')+'</div>';
+    box = '<div class="price box"><div class="pv"><span class="l">'+(i.pz===1?'Precio':'Caja · '+(i.pz?i.pz+' pzas':''))+'</span>'+
+      '<span class="v">'+(i.boxFull!=null && i.boxFull>i.box ? '<s>'+money(i.boxFull)+'</s>' : '')+money(i.box)+'</span></div>'+addBtn(i,'c')+'</div>';
   }
   return '<div class="item"><div class="nm">'+esc(i.name)+badge(i.ch)+(showCat?'<span class="cat">'+esc(SUBNAME(i.cat))+'</span>':'')+'</div>'+unit+box+'</div>';
 }
@@ -258,7 +271,7 @@ function addBtn(i,t){
   const q = cart[keyOf(i,t)]||0;
   const lbl = t==='c' ? (i.pz===1?'Pieza':'Caja') : 'Botella';
   const ico = t==='c' ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M3 8l9-4 9 4v9l-9 4-9-4z"/><path d="M3 8l9 4 9-4M12 12v9"/></svg>' : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M10 2h4v4l2 3v12a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V9l2-3z"/></svg>';
-  return '<button class="add '+(t==='c'?'c':'b')+(q?' on':'')+'" data-add="'+keyOf(i,t)+'" aria-label="Agregar '+lbl.toLowerCase()+' al pedido">'+ico+(q?lbl+' ✓ '+q:'+ '+lbl)+'</button>';
+  return '<button class="add '+(t==='c'?'c':'b')+(q?' on':'')+'" data-add="'+keyOf(i,t)+'" aria-label="Agregar '+lbl.toLowerCase()+' al pedido'+(q?' ('+q+' en tu pedido)':'')+'" title="Agregar '+lbl.toLowerCase()+'">+'+ico+(q?'<span class="n">'+q+'</span>':'')+'</button>';
 }
 function lines(){
   return Object.entries(cart).filter(([k,q])=>q>0).map(([k,q])=>{
@@ -348,8 +361,17 @@ function show(){
   let list = items.filter(i => inGroup(g,i));
   const present = new Set(list.map(i=>i.cat));
   const cats = g[2] ? g[2].filter(c=>present.has(c)) : [...present];
-  subsEl.innerHTML = cats.length>1 && g[0]!=='ofertas' ? ['<button class="chip" data-s="" aria-pressed="'+(sub===''?'true':'false')+'">Todos</button>'].concat(cats.map(c=>'<button class="chip" data-s="'+esc(c)+'" aria-pressed="'+(sub===c?'true':'false')+'">'+esc(SUBNAME(c))+'</button>')).join('') : '';
-  if(sub) list = list.filter(i => i.cat===sub);
+  const types = TYPES[g[0]];
+  let opts = [];
+  if(types){
+    opts = types.map(([lbl]) => lbl).concat(DEFTYPE[g[0]]?[DEFTYPE[g[0]]]:[]).map(lbl => ['t:'+lbl, lbl, list.filter(i=>typeOf(g[0],i)===lbl).length]).filter(o=>o[2]>0);
+    cats.filter(c=>!g[2] || c!==g[2][0]).forEach(c => opts.push([c, SUBNAME(c), list.filter(i=>i.cat===c).length]));
+  } else if(cats.length>1 && g[0]!=='ofertas'){
+    opts = cats.map(c => [c, SUBNAME(c), list.filter(i=>i.cat===c).length]);
+  }
+  subsEl.innerHTML = opts.length ? ['<button class="chip" data-s="" aria-pressed="'+(sub===''?'true':'false')+'">Todos</button>'].concat(opts.map(o=>'<button class="chip" data-s="'+esc(o[0])+'" aria-pressed="'+(sub===o[0]?'true':'false')+'">'+esc(o[1])+' <span style="opacity:.6;font-weight:600">'+o[2]+'</span></button>')).join('') : '';
+  if(sub && sub.startsWith('t:')) list = list.filter(i => typeOf(g[0],i)===sub.slice(2));
+  else if(sub) list = list.filter(i => i.cat===sub);
   if(filt) list = list.filter(i => i.ch===filt);
   if(g[2]) list.sort((a,b)=>g[2].indexOf(a.cat)-g[2].indexOf(b.cat));
   list = sortList(list);
