@@ -310,7 +310,8 @@ function waText(){
   s+='Total: '+money(cartTotal())+'\n\nEntrega a domicilio en: \nPago (transferencia o efectivo): \n¿Requiere factura?: ';
   return s;
 }
-function sendCart(){ const u='https://wa.me/'+PHONE+'?text='+encodeURIComponent(waText()); window.location.href=u; }
+function track(path,title,ev){ try{ if(window.goatcounter&&goatcounter.count) goatcounter.count({path:path,title:title,event:!!ev}); }catch(e){} }
+function sendCart(){ track('pedido-whatsapp','Pedido enviado por WhatsApp',true); const u='https://wa.me/'+PHONE+'?text='+encodeURIComponent(waText()); window.location.href=u; }
 function openSheet(){
   closeSheet();
   const L=lines(); const d=document.createElement('div'); d.className='sheet'; d.id='sheet';
@@ -409,11 +410,13 @@ let t; qEl.addEventListener('input', () => { clearTimeout(t); t=setTimeout(show,
 $('qx').addEventListener('click', () => { qEl.value=''; show(); qEl.focus(); });
 $('back').addEventListener('click', () => { if(qEl.value){ qEl.value=''; } if(location.hash){ history.pushState(null,'',location.pathname+location.search); } show(); window.scrollTo(0,0); });
 window.addEventListener('hashchange', show);
-$('info').addEventListener('click', openInfo);
-document.addEventListener('click', e => { if(e.target.closest('#evq')){ window.location.href='https://wa.me/'+PHONE+'?text='+encodeURIComponent('Hola, quiero cotizar bebidas para un evento con consigna. Fecha: \nNúmero de invitados: \nLugar: '); } });
+window.addEventListener('hashchange', () => { const g=GROUPS.find(x=>'#'+x[0]===location.hash); if(g) track('/seccion/'+g[0],'Sección: '+g[1]); });
+$('info').addEventListener('click', () => { openInfo(); track('como-funciona','Abrió Cómo funciona',true); });
+document.addEventListener('click', e => { if(e.target.closest('#evq')){ track('cotizar-evento','Cotizar evento por WhatsApp',true); window.location.href='https://wa.me/'+PHONE+'?text='+encodeURIComponent('Hola, quiero cotizar bebidas para un evento con consigna. Fecha: \nNúmero de invitados: \nLugar: '); } });
 show();
 updateBar();
 }
 </script>
+<script data-goatcounter="https://vinosmayoreo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
