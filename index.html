@@ -81,6 +81,19 @@ footer a{color:#1c2a44;font-weight:700}
 .fab svg{width:20px;height:20px}
 [hidden]{display:none!important}
 .deliv{background:#e9edf4;color:#1c2a44;font-size:14px;border-bottom:1px solid var(--line)}
+.info{display:block;width:100%;border:0;margin:0;background:#e9edf4;color:#1c2a44;border-bottom:1px solid var(--line);cursor:pointer;font:inherit;padding:0;text-align:center}
+.info .wrap{padding-top:10px;padding-bottom:9px}
+.info ul{list-style:none;margin:0 auto;padding:0;display:grid;grid-template-columns:repeat(4,auto);justify-content:center;gap:6px 22px;max-width:760px}
+.info li{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;white-space:nowrap;text-align:left}
+.info li svg{flex:none;width:18px;height:18px;opacity:.85}
+.info .how{display:inline-block;margin-top:6px;font-size:12.5px;font-weight:600;color:#3d4b66;text-decoration:underline;text-underline-offset:3px}
+@media (max-width:560px){.info ul{grid-template-columns:auto auto;gap:7px 16px}.info li{font-size:13px}}
+.sheet .steps{margin:4px 0 14px;padding:0;list-style:none;counter-reset:s}
+.sheet .steps li{counter-increment:s;position:relative;padding:0 0 10px 34px;color:var(--ink);font-size:15px}
+.sheet .steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:24px;height:24px;border-radius:50%;background:#1c2a44;color:#fff;font-size:13px;font-weight:800;display:grid;place-items:center}
+.sheet .blk{border-top:1px solid var(--line);padding:12px 0 4px}
+.sheet .blk b{display:block;font-size:15px;margin-bottom:2px}
+.sheet .blk p{margin:0;color:var(--muted);font-size:14.5px}
 .deliv .wrap{display:flex;align-items:center;justify-content:center;gap:8px;padding-top:9px;padding-bottom:9px;text-align:left}
 .deliv svg{flex:none}
 .add{position:relative;flex:none;display:flex;align-items:center;justify-content:center;gap:2px;border-radius:9px;height:36px;width:44px;padding:0;font:800 15px Manrope,sans-serif;cursor:pointer;white-space:nowrap}
@@ -137,7 +150,7 @@ body.hascart footer{padding-bottom:120px}
   <p class="logo" id="logo">Vinos y Licores</p>
   <p class="tag">Precios al 25 de noviembre 2026 · Pedidos: <a href="https://wa.me/523322549413" target="_blank" rel="noopener">33 2254 9413</a></p>
 </div></header>
-<div class="deliv"><div class="wrap"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M1 6h13v10H1zM14 9h4l4 4v3h-8z"/><circle cx="5.5" cy="17.5" r="2"/><circle cx="17.5" cy="17.5" r="2"/></svg><span><b>Entregas a domicilio.</b> Arma tu pedido aquí y envíalo por WhatsApp.</span></div></div>
+<button class="info" id="info" type="button" aria-label="Cómo funciona: envíos, pagos, facturas y eventos"><div class="wrap"><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M1 6h13v10H1zM14 9h4l4 4v3h-8z"/><circle cx="5.5" cy="17.5" r="2"/><circle cx="17.5" cy="17.5" r="2"/></svg>Envío a domicilio</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20M6 15h4"/></svg>Transferencia o efectivo</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h8M9 17h6"/></svg>Facturamos</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M8 21h8M12 15v6M6 3h12l-1 7a5 5 0 0 1-10 0z"/></svg>Eventos: consigna</li></ul><span class="how">¿Cómo funciona?</span></div></button>
 <div class="bar"><div class="wrap">
   <div class="search" id="sbox">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5f6672" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
@@ -294,7 +307,7 @@ function waText(){
   const L=lines();
   let s='Hola, quiero hacer este pedido:\n';
   L.forEach(l=>{ s+='• '+l.q+' '+(l.t==='c'?(l.i.pz===1?'pza'+(l.q>1?'s':''):'caja'+(l.q>1?'s':'')+(l.i.pz?' ('+l.i.pz+' pzas)':'')):'botella'+(l.q>1?'s':''))+' – '+l.i.name+' – '+money(l.sub)+'\n'; });
-  s+='Total: '+money(cartTotal())+'\n\nEntrega a domicilio en: ';
+  s+='Total: '+money(cartTotal())+'\n\nEntrega a domicilio en: \nPago (transferencia o efectivo): \n¿Requiere factura?: ';
   return s;
 }
 function sendCart(){ const u='https://wa.me/'+PHONE+'?text='+encodeURIComponent(waText()); window.location.href=u; }
@@ -305,6 +318,15 @@ function openSheet(){
     (L.length? L.map(l=>'<div class="ci"><div><div class="n">'+esc(l.i.name)+'</div><div class="s">'+(l.t==='c'?(l.i.pz===1?'Pieza':'Caja'+(l.i.pz?' de '+l.i.pz:'')):'Botella')+' · '+money(l.p)+' c/u</div></div><div class="r">'+money(l.sub)+'</div><div class="qty"><button data-q="'+l.k+'" data-d="-1" aria-label="Quitar uno">−</button><span>'+l.q+'</span><button data-q="'+l.k+'" data-d="1" aria-label="Agregar uno">+</button><button class="rm" data-q="'+l.k+'" data-d="x">Quitar</button></div></div>').join('') : '<p class="empty">Tu pedido está vacío.</p>')+
     '<div class="tot"><span>Total</span><span>'+money(cartTotal())+'</span></div><p class="fine">Entregas a domicilio. Te confirmamos existencia y entrega por WhatsApp.</p>'+
     (L.length?'<button class="go" id="go" type="button">Enviar pedido por WhatsApp</button><button class="more" id="xs2" type="button">Seguir agregando</button>':'')+'</div>';
+  document.body.appendChild(d);
+}
+function openInfo(){
+  closeSheet(); const d=document.createElement('div'); d.className='sheet'; d.id='sheet';
+  d.innerHTML='<div class="pn" role="dialog" aria-modal="true" aria-label="Cómo funciona"><button class="x" id="xs" aria-label="Cerrar">×</button><h2>Cómo funciona</h2>'+
+  '<ol class="steps"><li>Arma tu pedido en esta página (botellas o cajas) y envíalo por WhatsApp.</li><li>Te confirmamos existencias, total y día de entrega.</li><li>Te lo llevamos a domicilio.</li><li>Pagas por transferencia o en efectivo.</li></ol>'+
+  '<div class="blk"><b>Facturas</b><p>Facturamos sin problema. Mándanos tus datos fiscales junto con tu pedido.</p></div>'+
+  '<div class="blk"><b>Eventos grandes: consigna</b><p>Para bodas, posadas y eventos grandes manejamos consigna: llevamos el producto y al final pagas solo lo que se consumió. Las botellas cerradas se regresan.</p></div>'+
+  '<button class="go" id="evq" style="margin-top:12px">Cotizar mi evento por WhatsApp</button><button class="more" id="xs2">Ver precios</button></div>';
   document.body.appendChild(d);
 }
 function closeSheet(){ const s=$('sheet'); if(s) s.remove(); }
@@ -387,6 +409,8 @@ let t; qEl.addEventListener('input', () => { clearTimeout(t); t=setTimeout(show,
 $('qx').addEventListener('click', () => { qEl.value=''; show(); qEl.focus(); });
 $('back').addEventListener('click', () => { if(qEl.value){ qEl.value=''; } if(location.hash){ history.pushState(null,'',location.pathname+location.search); } show(); window.scrollTo(0,0); });
 window.addEventListener('hashchange', show);
+$('info').addEventListener('click', openInfo);
+document.addEventListener('click', e => { if(e.target.closest('#evq')){ window.location.href='https://wa.me/'+PHONE+'?text='+encodeURIComponent('Hola, quiero cotizar bebidas para un evento con consigna. Fecha: \nNúmero de invitados: \nLugar: '); } });
 show();
 updateBar();
 }
